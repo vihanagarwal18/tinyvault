@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'components.dart';
 import 'constants/constant.dart';
 
-class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<Loginpage> createState() => _LoginpageState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _LoginpageState extends State<Loginpage> {
-  TextEditingController mailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  bool showpassword = true;
-  @override
+class _ForgotPasswordState extends State<ForgotPassword> {
+  TextEditingController mailregisterController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +49,9 @@ class _LoginpageState extends State<Loginpage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Logo
-                      // Image.asset(
-                      //   'assets/logo.png',
-                      //   height: 50,
-                      // ),
                       SizedBox(height: 20.0),
-                      // Welcome Text
                       Text(
-                        'Welcome back',
+                        'Forgot Password',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -67,7 +59,7 @@ class _LoginpageState extends State<Loginpage> {
                       ),
                       SizedBox(height: 10.0),
                       Text(
-                        'Glad to see you again 👋\nLogin to your account below',
+                        'Enter your email to reset your password',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -75,57 +67,19 @@ class _LoginpageState extends State<Loginpage> {
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      // Google Sign-In Button
-                      // ElevatedButton.icon(
-                      //   onPressed: () {
-                      //     // Implement Google Sign-In
-                      //   },
-                      //   icon: Icon(Icons.login, color: Colors.red),
-                      //   label: Text('Continue with Google'),
-                      //   style: ElevatedButton.styleFrom(
-                      //     backgroundColor: Colors.white,
-                      //     foregroundColor: Colors.black,
-                      //     side: BorderSide(color: Colors.grey.shade300),
-                      //     padding: EdgeInsets.symmetric(vertical: 15),
-                      //     textStyle: TextStyle(fontSize: 16),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 20.0),
-                      // Email TextField
                       CustomTextField(
-                        controller: mailController,
-                        hintText: 'enter email...',
+                        controller: mailregisterController,
+                        hintText: 'Enter Your Email ID',
                       ),
                       SizedBox(height: 20.0),
-                      // Password TextField
-                      CustomTextField(
-                        controller: passwordController,
-                        hintText: 'enter password...',
-                        obscureText: showpassword,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            color: Colors.grey.shade500,
-                            showpassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              showpassword = !showpassword;
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      // Login Button
                       SizedBox(
                         width: double.infinity,
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            // submit_login();
+                            // Implement password reset logic here
                           },
-                          child: Text('Login'),
+                          child: Text('Reset Password'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: tinyvault_purple,
                             foregroundColor: Colors.white,
@@ -138,21 +92,20 @@ class _LoginpageState extends State<Loginpage> {
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      // Registration Link
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            '/ForgotPassword',
-                                (_) => false,
+                            '/login',
+                            (_) => false,
                           );
                         },
                         child: Text.rich(
                           TextSpan(
-                            text: "Forgot Password? ",
+                            text: "Remember your password? ",
                             children: [
                               TextSpan(
-                                text: 'Reset Here',
+                                text: 'Login',
                                 style: TextStyle(color: Colors.blue),
                               ),
                             ],
