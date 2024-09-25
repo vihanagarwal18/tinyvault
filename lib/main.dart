@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'loginpage.dart';
+import 'pages/home.dart';
+import 'pages/loginpage.dart';
 import 'authgate.dart';
-import 'register.dart';
-import 'forgot_password.dart';
+import 'pages/register.dart';
+import 'pages/forgot_password.dart';
 // ignore_for_file: prefer_const_constructors
 
 void main() => runApp(MaterialApp(

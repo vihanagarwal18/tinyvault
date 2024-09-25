@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
-import 'components.dart';
-import 'constants/constant.dart';
-import 'dart:async';
+import '../components.dart';
+import '../constants/constant.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController mailregisterController = TextEditingController();
-  TextEditingController passController = TextEditingController();
-  TextEditingController confirmpassController = TextEditingController();
-  bool showpassword = true;
-  bool confirmpassword = true;
-  Timer? verificationTimer; // Declare the Timer
-  bool canResendEmail = true; // Track if the resend button can be pressed
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tinyvault_bg, // Match background color
+      backgroundColor: tinyvault_bg,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -40,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   width: containerWidth,
                   height: containerHeight,
                   decoration: BoxDecoration(
-                    color: Colors.white, // Match container color
+                    color: Colors.white,
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
@@ -56,15 +49,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Logo
-                      // Image.asset(
-                      //   'assets/logo.png',
-                      //   height: 50,
-                      // ),
+                      Image.asset(
+                        'logo.png',
+                        height: 60,
+                        errorBuilder: (context, error, stackTrace) {
+                          print('Error loading image: $error');
+                          return Icon(Icons.error);
+                        },
+                      ),
                       SizedBox(height: 20.0),
-                      // Welcome Text
                       Text(
-                        'Create an Account',
+                        'Forgot Password',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -72,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       SizedBox(height: 10.0),
                       Text(
-                        'Join us and start chatting!',
+                        'Enter your email to reset your password',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -80,61 +75,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      // Email TextField
                       CustomTextField(
                         controller: mailregisterController,
                         hintText: 'Enter Your Email ID',
                       ),
                       SizedBox(height: 20.0),
-                      // Password TextField
-                      CustomTextField(
-                        controller: passController,
-                        hintText: 'Enter Password',
-                        obscureText: showpassword,
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              showpassword = !showpassword;
-                            });
-                          },
-                          icon: Icon(
-                            showpassword
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.grey.shade500,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      // Confirm Password TextField
-                      CustomTextField(
-                        controller: confirmpassController,
-                        hintText: 'Confirm Password',
-                        obscureText: confirmpassword,
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              confirmpassword = !confirmpassword;
-                            });
-                          },
-                          icon: Icon(
-                            confirmpassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.grey.shade500,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      // Submit Button
                       SizedBox(
                         width: double.infinity,
                         height: 40,
                         child: ElevatedButton(
                           onPressed: () {
-                            // submit_register();
                           },
-                          child: Text('Submit'),
+                          child: Text('Reset Password'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: tinyvault_purple,
                             foregroundColor: Colors.white,
@@ -147,7 +99,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      // Login Link
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(
@@ -158,10 +109,30 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                         child: Text.rich(
                           TextSpan(
-                            text: "Already have an account? ",
+                            text: "Remember your password? ",
                             children: [
                               TextSpan(
                                 text: 'Login',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/RegisterRoute',
+                                (_) => false,
+                          );
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            text: "Don't have an account? ",
+                            children: [
+                              TextSpan(
+                                text: 'Sign up for Free',
                                 style: TextStyle(color: Colors.blue),
                               ),
                             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'components.dart';
-import 'constants/constant.dart';
+import '../components.dart';
+import '../constants/constant.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -52,11 +52,15 @@ class _LoginpageState extends State<Loginpage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Logo
-                      // Image.asset(
-                      //   'assets/logo.png',
-                      //   height: 50,
-                      // ),
-                      SizedBox(height: 20.0),
+                      Image.asset(
+                        'logo.png',
+                        height: 60,
+                        errorBuilder: (context, error, stackTrace) {
+                          print('Error loading image: $error');
+                          return Icon(Icons.error);
+                        },
+                      ),
+                      SizedBox(height: 10.0),
                       // Welcome Text
                       Text(
                         'Welcome back',
@@ -144,7 +148,7 @@ class _LoginpageState extends State<Loginpage> {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             '/ForgotPassword',
-                                (_) => false,
+                            (_) => false,
                           );
                         },
                         child: Text.rich(
@@ -164,7 +168,7 @@ class _LoginpageState extends State<Loginpage> {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             '/RegisterRoute',
-                                (_) => false,
+                            (_) => false,
                           );
                         },
                         child: Text.rich(
