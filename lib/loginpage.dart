@@ -141,11 +141,26 @@ class _LoginpageState extends State<Loginpage> {
                       // Registration Link
                       TextButton(
                         onPressed: () {
-                          // Navigator.pushNamedAndRemoveUntil(
-                          //   context,
-                          //   '/RegisterRoute',
-                          //       (_) => false,
-                          // );
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            text: "Forgot Password? ",
+                            children: [
+                              TextSpan(
+                                text: 'Reset Here',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/RegisterRoute',
+                                (_) => false,
+                          );
                         },
                         child: Text.rich(
                           TextSpan(
